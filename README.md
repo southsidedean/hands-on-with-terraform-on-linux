@@ -1,4 +1,4 @@
-# Getting Started with Terraform
+# Hands-on With Terraform on Linux
 
 Infrastructure as code (IaC) enables you to create, manage, provision and destroy infrastructure, programmatically and on demand. IaC, a key pillar in the culture of DevOps, offers several advantages to manual operations.
 
@@ -23,7 +23,7 @@ Several Popular IaC Tools:
 
 Terraform, a popular infrastructure as code tool, facilitates deployment of IaC across a variety of infrastructure providers. In this guide, you're going to take a look at how to install Terraform, create some infrastructure as code, deploy that code on Docker and destroy the infrastructure we created, using Terraform.
 
-Learning Objectives:
+Hands-on Objectives:
 
 - Install and test Terraform
 - Define infrastructure as code (IaC) using Terraform
@@ -81,11 +81,11 @@ The `terraform -version` command shows you the installed version of Terraform.
 
 With Terraform installed and working, it's time to create some infrastructure as code. In this step, you'll create a file with a Terraform configuration that uses the `kreuzwerker/docker` provider to provision an `nginx` container on Docker.
 
-Terraform requires a working directory to host your `demo` project. You should create a directory called `terraform-demo` and change your working directory to that directory.
+Terraform requires a working directory to host your `test` project. You should create a directory called `terraform-test` and change your working directory to that directory.
 
 ```shell
-$ mkdir terraform-demo
-$ cd terraform-demo
+$ mkdir terraform-test
+$ cd terraform-test
 ```
 
 More information on Terraform working directories can be found on the HashiCorp Developer site, in the Terraform CLI documentation, [here](https://developer.hashicorp.com/terraform/cli/init).
@@ -106,7 +106,7 @@ provider "docker" {
 }
 resource "docker_container" "nginx" {
   image = docker_image.nginx.name
-  name  = "training"
+  name  = "nginx_container"
   ports {
     internal = 80
     external = 80
@@ -133,7 +133,7 @@ provider "docker" {
 }
 resource "docker_container" "nginx" {
   image = docker_image.nginx.name
-  name  = "training"
+  name  = "nginx_container"
   ports {
     internal = 80
     external = 80
@@ -163,7 +163,7 @@ CONTAINER ID   IMAGE         COMMAND    CREATED          STATUS                 
 
 The preceding example shows no `nginx` containers, running or otherwise.
 
-Before you can deploy any infrastructure as code, you need to initialize your Terraform project directory with the `terraform init` command. This will download and install the `kreuzwerker/docker` provider and set up your `terraform-demo` directory with the necessary resources to execute your `demo` project.
+Before you can deploy any infrastructure as code, you need to initialize your Terraform project directory with the `terraform init` command. This will download and install the `kreuzwerker/docker` provider and set up your `terraform-test` directory with the necessary resources to execute your `test` project.
 
 ```shell
 $ terraform init
@@ -556,4 +556,3 @@ For more information on Terraform, see:
 - [HashiCorp Developer: Terraform: Documentation](https://developer.hashicorp.com/terraform/docs)
 - [HashiCorp Developer: Terraform: Tutorials](https://developer.hashicorp.com/terraform/tutorials)
 - [HashiCorp Terraform Registry](https://registry.terraform.io/)
-
